@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h2 {
+            color: #005A9C;
+            text-align: center;
+        }
+        .filter-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .filter-button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .filter-button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+            font-weight: normal;
+        }
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Search Results</h2>
+    <center><i>Filter by match score</i></center>
+    <div class="filter-buttons">
+        <!-- Dynamically generate filter buttons based on available scores -->
+        {% for score in unique_scores %}
+        <button class="filter-button" onclick="filterByScore({{ score }})">{{ score }}</button>
+        {% endfor %}
+    </div>
+    <script>
+        function filterByScore(score) {
+            var table, tr, i, scoreData;
+            table = document.getElementById("resultsTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                scoreData = parseInt(tr[i].getAttribute('data-score'), 10);
+                if (scoreData === score) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    
+    {% if results %}
+    <table id="resultsTable">
+        <tr>
+            <th>Student Name</th>
+            <th>Candidate Name</th>
+            <th>Rationale</th>
+        </tr>
+        {% for result in results %}
+        <tr data-score="{{ result.Score }}">
+            <td>{{ result.Student_Name }}</td>
+            <td>{{ result.Candidate_Name }}</td>
+            <td style="max-width: 300px; overflow-wrap: break-word;">{{ result.Rationale }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
+</body>
+</html>
