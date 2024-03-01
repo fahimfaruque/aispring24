@@ -9,7 +9,7 @@ def load_dataset(filename):
         return list(csv.DictReader(file))
 
 # path to your dataset CSV file
-dataset = load_dataset('dataset_with_revised_rationale.csv')
+dataset = load_dataset('dataset_with_html_rationale.csv')
 
 # Route for the search form
 @app.route('/', methods=['GET'])
