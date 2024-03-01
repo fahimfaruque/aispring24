@@ -1,4 +1,2 @@
 Flask==2.0.3
-request
-render_template
-csv
+requests==2.26.0
