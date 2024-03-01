@@ -27,7 +27,7 @@ def search():
     unique_scores = sorted({int(row['Score']) for row in results}, reverse=True)
 
     # Pass both the results and the unique scores for filtering to the template
-    return render_template('results.html', results=results, unique_scores=unique_scores)
+    return render_template('results2.html', results=results, unique_scores=unique_scores)
 
 if __name__ == '__main__':
     app.run(debug=True)
