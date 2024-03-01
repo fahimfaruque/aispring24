@@ -8,8 +8,8 @@ def load_dataset(filename):
     with open(filename, mode='r', encoding='utf-8') as file:
         return list(csv.DictReader(file))
 
-# Replace 'your_dataset.csv' with the path to your actual dataset CSV file
-dataset = load_dataset('dataset.csv')
+# path to your dataset CSV file
+dataset = load_dataset('dataset_revised.csv')
 
 # Route for the search form
 @app.route('/', methods=['GET'])
