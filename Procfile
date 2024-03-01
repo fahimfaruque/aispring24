@@ -1,1 +1,1 @@
-web: gunicorn aispring24:app.py
+web: gunicorn app:app
