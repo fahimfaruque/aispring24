@@ -9,7 +9,7 @@ def load_dataset(filename):
         return list(csv.DictReader(file))
 
 # Updated path to your new dataset CSV file
-dataset = load_dataset('topcomparisonsgpt4_output.csv')
+dataset = load_dataset('topcomparisonsgpt4_outputV2.csv')
 
 # Route for the search form
 @app.route('/', methods=['GET'])
