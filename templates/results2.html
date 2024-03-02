@@ -50,22 +50,26 @@
         }
         /* Added style to preserve whitespace and line breaks in Rationale */
         .rationale {
-            max-width: 300px; 
+            /* max-width: 300px;  */
+            width: 70%;
             overflow-wrap: break-word;
             white-space: pre-wrap; /* This will preserve spaces, line breaks, etc. */
         }
+        
     </style>
 </head>
 <body>
     <h2>Search Results</h2>
     <center><a href="https://aispring24-c22081b210a9.herokuapp.com/" style="padding: 5px 10px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Back to Search</a></center><br>
     <center><i>Filter by match score</i></center>
+    
     <div class="filter-buttons">
-        <!-- Dynamically generate filter buttons based on available scores -->
         {% for score in unique_scores %}
         <button class="filter-button" onclick="filterByScore({{ score }})">{{ score }}</button>
         {% endfor %}
     </div>
+    <button class="filter-button" onclick="filterByScore('all')"><i>Reset</i></button>
+
     <script>
         function filterByScore(score) {
             var table, tr, i, scoreData;
@@ -73,26 +77,35 @@
             tr = table.getElementsByTagName("tr");
             for (i = 1; i < tr.length; i++) {
                 scoreData = parseInt(tr[i].getAttribute('data-score'), 10);
-                if (scoreData === score) {
+                if (score === 'all' || scoreData === score) {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
+
     </script>
     
     {% if results %}
     <table id="resultsTable">
         <tr>
-            <th>Student Name</th>
-            <th>Candidate Name</th>
-            <th>Rationale</th>
+            <th class="name-column">Student</th>
+            <th class="name-column">Candidate</th>
+            <th class="rationale-column">Rationale</th>
         </tr>
         {% for result in results %}
         <tr data-score="{{ result.Score }}">
-            <td>{{ result.Student_Name }}</td>
-            <td>{{ result.Candidate_Name }}</td>
+            <td>
+                <b>{{ result.Student_Name }}</b><br>
+                <a class="button" href="mailto:{{ result.Student_Email }}">{{ result.Student_Email }}</a><br> 
+                <a class="button" href="{{ result.Student_LinkedIn }}" target="_blank">{{ result.Student_LinkedIn }}</a>
+            </td>
+            <td>
+                <b>{{ result.Candidate_Name }}</b><br>
+                <a class="button" href="mailto:{{ result.Candidate_Email }}">{{ result.Candidate_Email}}</a><br>
+                <a class="button" href="{{ result.Candidate_LinkedIn }}" target="_blank">{{ result.Candidate_LinkedIn }}</a>
+            </td>
             <td class="rationale">{{ result.Rationale }}</td>
         </tr>
         {% endfor %}

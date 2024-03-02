@@ -8,8 +8,8 @@ def load_dataset(filename):
     with open(filename, mode='r', encoding='utf-8') as file:
         return list(csv.DictReader(file))
 
-# path to your dataset CSV file
-dataset = load_dataset('dataset_with_revised_rationale.csv')
+# Updated path to your new dataset CSV file
+dataset = load_dataset('topcomparisonsgpt4_output.csv')
 
 # Route for the search form
 @app.route('/', methods=['GET'])
@@ -20,14 +20,20 @@ def index():
 @app.route('/search', methods=['POST'])
 def search():
     search_query = request.form['name'].lower().strip()
-    # Filter results based on the search query
-    results = [row for row in dataset if search_query in row['Student_Name'].lower() or search_query in row['Candidate_Name'].lower()]
+    results = [row for row in dataset if search_query in row.get('Student_Name', '').lower() or search_query in row.get('Candidate_Name', '').lower()]
+    filtered_results = [{
+        'Student_Name': row['Student_Name'],
+        'Student_Email': row['Student_Email'],
+        'Student_LinkedIn': row['Student_LinkedIn'],
+        'Candidate_Name': row['Candidate_Name'],
+        'Candidate_Email': row['Candidate_Email'],
+        'Candidate_LinkedIn': row['Candidate_LinkedIn'],
+        'Rationale': row['Rationale'],
+        'Score': row['score']  # Ensure this matches the field name in your CSV
+    } for row in results]
 
-    # Extract unique scores from the filtered results
-    unique_scores = sorted({int(row['Score']) for row in results}, reverse=True)
-
-    # Pass both the results and the unique scores for filtering to the template
-    return render_template('results2.html', results=results, unique_scores=unique_scores)
-
+    unique_scores = sorted({int(row['Score']) for row in filtered_results})
+    
+    return render_template('results2.html', results=filtered_results, unique_scores=unique_scores)
 if __name__ == '__main__':
     app.run(debug=True)
