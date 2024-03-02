@@ -14,7 +14,7 @@ dataset = load_dataset('topcomparisonsgpt4_outputV2.csv')
 # Route for the search form
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('search.html')
+    return render_template('search2.html')
 
 # Route to handle search requests
 @app.route('/search', methods=['POST'])
