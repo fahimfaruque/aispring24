@@ -100,10 +100,12 @@
         <div class="swiper-wrapper">
             {% for result in results %}
             <div class="swiper-slide" data-score="{{ result.Score }}">
-                <div class="slide-content"><strong>Student Name:</strong> {{ result.Student_Name }}</div>
-                <div class="slide-content"><center><a href="mailto:{{ result.Student_Email }}" class="link">Email</a> | <a href="{{ result.Student_LinkedIn }}" class="link" target="_blank">LinkedIn</a></center></div>
-                <div class="slide-content">{{ result.Candidate_Name }}</div>
-                <div class="slide-content"><a href="mailto:{{ result.Candidate_Email }}" class="link">Email</a> | <a href="{{ result.Candidate_LinkedIn }}" class="link" target="_blank">LinkedIn</a></div>
+                <div class="slide-content"><center>{{ result.Student_Name }}</center></div>
+                <div class="slide-content"><center><a href="mailto:{{ result.Student_Email }}" class="link">{{ result.Student_Email }}</a>  <br>
+                    <a href="{{ result.Student_LinkedIn }}" class="link" target="_blank">{{ result.Student_LinkedIn }}</a></center></div>
+                <div class="slide-content"><center>{{ result.Candidate_Name }}</center></div>
+                <div class="slide-content"><center><a href="mailto:{{ result.Candidate_Email }}" class="link">{{ result.Candidate_Email }}</a><br>
+                    <a href="{{ result.Candidate_LinkedIn }}" class="link" target="_blank">{{ result.Candidate_LinkedIn }}</center></a></div>
                 <div class="slide-content"><span class="rationale">{{ result.Rationale }}</span></div>
             </div>
             {% endfor %}
