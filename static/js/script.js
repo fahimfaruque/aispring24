@@ -29,3 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Detect device type
+function detectDeviceAndRedirect() {
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      // If the user is on a phone, redirect to results5.html
+      window.location.href = 'results5.html';
+    } else {
+      // If the user is on a computer, redirect to results2.html
+      window.location.href = 'results2.html';
+    }
+  }
+  
+  // Call the function to redirect based on device type
+  detectDeviceAndRedirect();
+  
