@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teams Formation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%; /* Ensure full height */
+            margin: 0; /* Reset default margin */
+        }
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            padding: 0; /* Reset default padding */
+            font-family: Arial, sans-serif; /* Original font preference */
+            background-color: #F0F2F5; /* Adjusted background color */
+        }
+        .search-form {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px; /* Adjust width as necessary */
+        }
+        .search-form h1, .search-form h2 {
+            color: #1877F2;
+        }
+        .search-form input[type="text"], .search-form button {
+            margin: 10px 0; /* Provide spacing around input and button */
+            width: calc(100% - 20px); /* Adjust width to ensure padding doesn't affect overall width */
+            border-radius: 20px; /* Rounded corners for input and button */
+        }
+        .search-form input[type="text"] {
+            border: 1px solid #ccd0d5;
+            padding: 10px;
+        }
+        .search-form button {
+            background-color: #1877F2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #165EAB;
+        }
+        .footer-note {
+            margin-top: 15px;
+            color: #606770;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-form">
+        <center><h1>Teams Formation</h1></center>
+    <center><h3>Spring 2024 AI FOR IMPACT: VENTURE STUDIO</h3></center>
+        <form action="/search" method="post">
+            <input type="text" class="form-control" name="name" placeholder="Enter your name">
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+        </form>
+        <p class="footer-note"><i>Retrieve a list of classmates GPT recommends you meet during the team formation process</i></p>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

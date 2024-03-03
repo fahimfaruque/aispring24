@@ -119,6 +119,10 @@
         left: 25%; /* Position left of center */
         margin-left: -25px; /* Half the total width of both buttons to push it exactly center */
     }
+    .filter-button.active {
+    background-color: #0056b3; /* Darker shade for active button */
+    color: white;
+}
 
     </style>
 </head>
@@ -158,7 +162,19 @@
         </div>
 
     </div>
-
+    <div class="filter-buttons">
+        {% if unique_scores %}
+            <a href="/search?name={{ search_query }}" class="filter-button {% if not current_filter %}active{% endif %}">All Scores</a>
+            {% for score in unique_scores %}
+            <a href="/search?name={{ search_query }}&score_filter={{ score }}" class="filter-button {% if score == current_filter %}active{% endif %}">{{ score }}</a>
+            {% endfor %}
+        {% else %}
+            <p>No scores available.</p>
+        {% endif %}
+    </div>
+    
+    
+    
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
