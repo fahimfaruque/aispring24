@@ -1,6 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
     background-color: #f9f9f9;
     color: #333;
 }
@@ -8,98 +9,73 @@ body {
 h2 {
     text-align: center;
     color: #005A9C;
+    margin: 0.5em 0;
+}
+
+.back-to-search,
+.filter-button {
+    display: block;
+    margin: 0.5em auto;
+    padding: 0.8em 1.2em;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
 
 .filter-buttons {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.filter-button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-}
-
-.filter-button:hover {
-    background-color: #0056b3;
-}
-
-.swiper-container {
-    padding: 20px 0;
-}
-
-.swiper-slide {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Adjusted for better content distribution */
-    align-items: flex-start; /* Align content to the start of the slide */
-    text-align: left; /* Align text to the left */
-    padding: 20px;
-    transition: transform 0.3s;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Adds space between buttons */
+    margin: 1em 0;
 }
 
-.swiper-slide:hover {
-    transform: translateY(-5px);
+.rationale {
+/* max-width: 300px;  */
+width: 100%;
+overflow-wrap: break-word;
+white-space: pre-wrap; /* This will preserve spaces, line breaks, etc. */
 }
-
-.slide-content {
-    margin-bottom: 15px; /* Adjusted margin for better content layout */
-}
-
-.link {
-    color: #007bff;
-    text-decoration: none;
-    margin: 5px 0;
-    transition: color 0.3s;
-}
-
-.link:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-.swiper-button-prev, .swiper-button-next {
-    color: #007BFF;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-}
-
-.swiper-button-prev {
-    left: 10px;
-}
-
-.swiper-button-next {
-    right: 10px;
-}
-
 .swiper-pagination-bullet-active {
     background-color: #007BFF;
 }
 
-.back-to-search {
-    padding: 10px 15px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
-    display: inline-block;
-    margin-top: 10px;
+.swiper-button-prev,
+.swiper-button-next {
+    color: #007BFF;
 }
 
-.rationale {
-    white-space: pre-wrap;
-    margin-top: 15px; /* Added margin top for spacing */
-    overflow-wrap: break-word;
+/* Add this to ensure the container takes the full width and hides overflow */
+.swiper-container {
+    width: 100vw;
+    overflow: hidden; /* Prevents parts of other slides from showing */
+}
+
+/* Ensure swiper-slide is centered and has a defined width */
+.swiper-slide {
+    width: 90vw; /* Adjust based on your design requirements */
+    flex: none; /* Prevents the slide from growing or shrinking */
+    margin-left: auto; /* Centers the slide */
+    margin-right: auto; /* Centers the slide */
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: 90vw; /* Adjust based on your design requirements for mobile */
+    }
+}
+
+/* Ensure buttons are not taking space if they're not used */
+.swiper-button-prev, .swiper-button-next {
+    display: none;
+}
+
+/* If pagination is not needed */
+.swiper-pagination {
+    display: none;
 }

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #005A9C;
+            margin: 0.5em 0;
+        }
+        .back-to-search,
+        .filter-button {
+            display: block;
+            margin: 0.5em auto;
+            padding: 0.8em 1.2em;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 1em 0;
+        }
+        .rationale {
+            width: 100%;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #007BFF;
+        }
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: #007BFF;
+        }
+        .swiper-container {
+            width: 100vw;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            width: 90vw;
+            flex: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .slide-content {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 10px;
+            width: calc(100% - 20px);
+            box-sizing: border-box;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+            .swiper-slide {
+                width: 90vw;
+            }
+            .slide-content {
+                padding: 15px;
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Search Results</h2>
+    <center><a href="https://aispring24-c22081b210a9.herokuapp.com/" class="back-to-search">Back to Search</a></center>
+   
+    
+   
+    <div class="filter-buttons">
+        {% for score in unique_scores %}
+        <button class="filter-button" onclick="filterByScore('{{ score }}')">{{ score }}</button>
+        {% endfor %}
+        <button class="filter-button" onclick="filterByScore('all')">Reset</button>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for result in results %}
+            <div class="swiper-slide" data-score="{{ result.Score }}">
+                <div class="slide-content"><strong>Student Name:</strong> {{ result.Student_Name }}</div>
+                <div class="slide-content"><center><a href="mailto:{{ result.Student_Email }}" class="link">Email</a> | <a href="{{ result.Student_LinkedIn }}" class="link" target="_blank">LinkedIn</a></center></div>
+                <div class="slide-content">{{ result.Candidate_Name }}</div>
+                <div class="slide-content"><a href="mailto:{{ result.Candidate_Email }}" class="link">Email</a> | <a href="{{ result.Candidate_LinkedIn }}" class="link" target="_blank">LinkedIn</a></div>
+                <div class="slide-content"><span class="rationale">{{ result.Rationale }}</span></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper;
+        document.addEventListener('DOMContentLoaded', function() {
+            swiper = new Swiper('.swiper-container', {
+                loop: false,
+                autoHeight: true,
+            });
+            window.filterByScore = function(score) {
+                var slides = document.querySelectorAll('.swiper-slide');
+                slides.forEach(function(slide) {
+                    var slideScore = slide.getAttribute('data-score');
+                    slide.style.display = (score === 'all' || slideScore === score) ? '' : 'none';
+                });
+                swiper.update();
+                swiper.slideTo(0);
+            };
+        });
+    </script>
+</body>
+</html>

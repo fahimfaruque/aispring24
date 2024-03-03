@@ -6,82 +6,87 @@
         <title>Search Results</title>
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
         <style>
-            body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-}
+                body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f9f9f9;
+                color: #333;
+            }
 
-h2 {
-    text-align: center;
-    color: #005A9C;
-    margin: 0.5em 0;
-}
+            h2 {
+                text-align: center;
+                color: #005A9C;
+                margin: 0.5em 0;
+            }
 
-.back-to-search,
-.filter-button {
-    display: block;
-    margin: 0.5em auto;
-    padding: 0.8em 1.2em;
-    border-radius: 20px;
-    text-decoration: none;
-    color: white;
-    background-color: #007BFF;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-}
+            .back-to-search,
+            .filter-button {
+                display: block;
+                margin: 0.5em auto;
+                padding: 0.8em 1.2em;
+                border-radius: 20px;
+                text-decoration: none;
+                color: white;
+                background-color: #007BFF;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+            }
 
-.filter-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px; /* Adds space between buttons */
-    margin: 1em 0;
-}
+            .filter-buttons {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px; /* Adds space between buttons */
+                margin: 1em 0;
+            }
 
+            .rationale {
+            /* max-width: 300px;  */
+            width: 100%;
+            overflow-wrap: break-word;
+            white-space: pre-wrap; /* This will preserve spaces, line breaks, etc. */
+        }
+            .swiper-pagination-bullet-active {
+                background-color: #007BFF;
+            }
 
-.swiper-pagination-bullet-active {
-    background-color: #007BFF;
-}
+            .swiper-button-prev,
+            .swiper-button-next {
+                color: #007BFF;
+            }
 
-.swiper-button-prev,
-.swiper-button-next {
-    color: #007BFF;
-}
+            /* Add this to ensure the container takes the full width and hides overflow */
+            .swiper-container {
+                width: 100vw;
+                overflow: hidden; /* Prevents parts of other slides from showing */
+            }
 
-/* Add this to ensure the container takes the full width and hides overflow */
-.swiper-container {
-    width: 100vw;
-    overflow: hidden; /* Prevents parts of other slides from showing */
-}
+            /* Ensure swiper-slide is centered and has a defined width */
+            .swiper-slide {
+                width: 90vw; /* Adjust based on your design requirements */
+                flex: none; /* Prevents the slide from growing or shrinking */
+                margin-left: auto; /* Centers the slide */
+                margin-right: auto; /* Centers the slide */
+            }
 
-/* Ensure swiper-slide is centered and has a defined width */
-.swiper-slide {
-    width: 90vw; /* Adjust based on your design requirements */
-    flex: none; /* Prevents the slide from growing or shrinking */
-    margin-left: auto; /* Centers the slide */
-    margin-right: auto; /* Centers the slide */
-}
+            /* Additional responsive adjustments */
+            @media (max-width: 768px) {
+                .swiper-slide {
+                    width: 90vw; /* Adjust based on your design requirements for mobile */
+                }
+            }
 
-/* Additional responsive adjustments */
-@media (max-width: 768px) {
-    .swiper-slide {
-        width: 90vw; /* Adjust based on your design requirements for mobile */
-    }
-}
+            /* Ensure buttons are not taking space if they're not used */
+            .swiper-button-prev, .swiper-button-next {
+                display: none;
+            }
 
-/* Ensure buttons are not taking space if they're not used */
-.swiper-button-prev, .swiper-button-next {
-    display: none;
-}
-
-/* If pagination is not needed */
-.swiper-pagination {
-    display: none;
-}
+            /* If pagination is not needed */
+            .swiper-pagination {
+                display: none;
+            }
 
 
         </style>
@@ -108,10 +113,10 @@ h2 {
             <!-- Template tags for results -->
             {% for result in results %}
             <div class="swiper-slide" data-score="{{ result.Score }}">
-                <div class="slide-content"><strong>Student Name:</strong> {{ result.Student_Name }}</div>
-                <div class="slide-content"><a href="mailto:{{ result.Student_Email }}" class="link">{{ result.Student_Email }}</a> | <a href="{{ result.Student_LinkedIn }}" class="link" target="_blank">{{ result.Student_LinkedIn }}</a></div>
-                <div class="slide-content"><strong>Candidate Name:</strong> {{ result.Candidate_Name }}</div>
-                <div class="slide-content"><a href="mailto:{{ result.Candidate_Email }}" class="link">{{ result.Candidate_Email }}</a> | <a href="{{ result.Candidate_LinkedIn }}" class="link" target="_blank">{{ result.Candidate_LinkedIn }}</a></div>
+                <div class="rationale"><strong>Student Name:</strong> {{ result.Student_Name }}</div>
+                <div class="rationale"><a href="mailto:{{ result.Student_Email }}" class="link">{{ result.Student_Email }}</a> | <a href="{{ result.Student_LinkedIn }}" class="link" target="_blank">{{ result.Student_LinkedIn }}</a></div>
+                <div class="rationale"><strong>Candidate Name:</strong> {{ result.Candidate_Name }}</div>
+                <div class="rationale"><a href="mailto:{{ result.Candidate_Email }}" class="link">{{ result.Candidate_Email }}</a> | <a href="{{ result.Candidate_LinkedIn }}" class="link" target="_blank">{{ result.Candidate_LinkedIn }}</a></div>
                 <div class="rationale"><strong>Rationale:</strong> {{ result.Rationale }}</div>
             </div>
             {% endfor %}

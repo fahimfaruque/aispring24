@@ -34,6 +34,6 @@ def search():
 
     unique_scores = sorted({int(row['Score']) for row in filtered_results})
     
-    return render_template('results3.html', results=filtered_results, unique_scores=unique_scores)
+    return render_template('results5.html', results=filtered_results, unique_scores=unique_scores)
 if __name__ == '__main__':
     app.run(debug=True)
