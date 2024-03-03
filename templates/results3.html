@@ -7,127 +7,72 @@
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
         <style>
             body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                padding: 20px;
-                background-color: #f9f9f9;
-                color: #333;
-                margin: 0;
-            }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
 
-            h2 {
-                color: #005A9C;
-            }
+h2 {
+    text-align: center;
+    color: #005A9C;
+    margin: 0.5em 0;
+}
 
-            .back-to-search,
-            .filter-button,
-            .link {
-                display: inline-block;
-                padding: 10px 15px;
-                border-radius: 20px;
-                text-decoration: none;
-                color: white;
-                background-color: #007BFF;
-                transition: background-color 0.3s, color 0.3s;
-            }
+.back-to-search,
+.filter-button {
+    display: block;
+    margin: 0.5em auto;
+    padding: 0.8em 1.2em;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
 
-            .back-to-search {
-                margin-top: 10px;
-                color: black; /* For better contrast and visibility on mobile */
-            }
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Adds space between buttons */
+    margin: 1em 0;
+}
 
-            .filter-buttons,
-            .swiper-container {
-                text-align: center;
-                margin: 20px 0;
-            }
+.swiper-container {
+    overflow: hidden; /* This prevents any part of the next/previous slide from showing */
+}
 
-            .filter-button {
-                margin: 0 5px;
-                border: none;
-                cursor: pointer;
-            }
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1em;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-            .filter-button:hover,
-            .link:hover {
-                background-color: #0056b3;
-                color: #0056b3;
-            }
+.swiper-pagination-bullet-active {
+    background-color: #007BFF;
+}
 
-            .swiper-container {
-                padding: 20px;
-                overflow: hidden; /* Prevents displaying partial slides */
-            }
+.swiper-button-prev,
+.swiper-button-next {
+    color: #007BFF;
+}
 
-            .swiper-slide {
-                background-color: white;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                text-align: left;
-                padding: 20px;
-                transition: transform 0.3s;
-                width: 100%; /* Makes sure each slide is the full width of the swiper container */
-            }
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: auto; /* Allows the slide to fit the content */
+    }
+}
 
-            .swiper-pagination-bullet-active {
-                background-color: #007BFF;
-            }
-
-            .swiper-button-prev,
-            .swiper-button-next {
-                color: #007BFF;
-            }
-
-            .rationale {
-                white-space: pre-wrap;
-                overflow-wrap: break-word;
-            }
-
-            /* Responsive styles */
-            @media (max-width: 768px) {
-                .filter-buttons,
-                .swiper-container {
-                    margin: 10px 0;
-                }
-
-                .swiper-slide {
-                    padding: 15px;
-                }
-
-                .back-to-search,
-                .filter-button,
-                .link {
-                    padding: 8px 12px; /* Slightly smaller padding for smaller screens */
-                }
-
-                h2 {
-                    font-size: 1.5em; /* Adjust heading size for smaller screens */
-                }
-            }
-
-            @media (max-width: 480px) {
-                body {
-                    padding: 10px; /* Less padding for very small screens */
-                }
-
-                .swiper-slide {
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Less pronounced shadow on small screens */
-                }
-
-                .back-to-search,
-                .filter-button,
-                .link {
-                    font-size: 0.9em; /* Smaller font size for readability */
-                }
-
-                .swiper-button-prev,
-                .swiper-button-next {
-                    padding: 10px; /* Larger hit area for navigation buttons */
-                }
-            }
 
 
         </style>
