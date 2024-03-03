@@ -52,23 +52,35 @@ h2 {
     color: #007BFF;
 }
 
+/* Add this to ensure the container takes the full width and hides overflow */
 .swiper-container {
-    overflow: hidden;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100vw;
+    overflow: hidden; /* Prevents parts of other slides from showing */
 }
 
+/* Ensure swiper-slide is centered and has a defined width */
 .swiper-slide {
-    padding: 16px;
-    margin: 0 10px; // Increase as necessary to create more space between cards
-    // Rest of the styles remain unchanged
+    width: 90vw; /* Adjust based on your design requirements */
+    flex: none; /* Prevents the slide from growing or shrinking */
+    margin-left: auto; /* Centers the slide */
+    margin-right: auto; /* Centers the slide */
 }
 
-/* Additional responsive adjustments for mobile */
+/* Additional responsive adjustments */
 @media (max-width: 768px) {
     .swiper-slide {
-        margin: 0 5px; // Adjust margin for smaller screens if necessary
+        width: 90vw; /* Adjust based on your design requirements for mobile */
     }
+}
+
+/* Ensure buttons are not taking space if they're not used */
+.swiper-button-prev, .swiper-button-next {
+    display: none;
+}
+
+/* If pagination is not needed */
+.swiper-pagination {
+    display: none;
 }
 
 
