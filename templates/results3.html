@@ -42,21 +42,6 @@ h2 {
     margin: 1em 0;
 }
 
-.swiper-container {
-    overflow: hidden; /* This prevents any part of the next/previous slide from showing */
-}
-
-.swiper-slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1em;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 
 .swiper-pagination-bullet-active {
     background-color: #007BFF;
@@ -67,12 +52,24 @@ h2 {
     color: #007BFF;
 }
 
-@media (max-width: 768px) {
-    .swiper-slide {
-        width: auto; /* Allows the slide to fit the content */
-    }
+.swiper-container {
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.swiper-slide {
+    padding: 16px;
+    margin: 0 10px; // Increase as necessary to create more space between cards
+    // Rest of the styles remain unchanged
+}
+
+/* Additional responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .swiper-slide {
+        margin: 0 5px; // Adjust margin for smaller screens if necessary
+    }
+}
 
 
         </style>
