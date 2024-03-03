@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Assuming your CSS is in a 'static' folder -->
+</head>
+<body>
+
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        {% if results %}
+            {% for result in results %}
+                <div class="swiper-slide">
+                    <div class="card">
+                        <h3>{{ result.Student_Name }}</h3>
+                        <p>{{ result.Rationale }}</p>
+                        <!-- Add more details as needed -->
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script> <!-- Assuming your JS is in a 'static' folder -->
+
+</body>
+</html>
