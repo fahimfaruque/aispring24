@@ -68,7 +68,22 @@
     </form>
     <p><i>Retrieve a list of classmates GPT recommends you meet during the team formation process</i></p>
 
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.getElementById("searchForm"); // Ensure your form has this ID
+            form.onsubmit = function() {
+                // Detect device type
+                var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? "mobile" : "desktop";
+                // Append it as a hidden input
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "device";
+                input.value = isMobile;
+                form.appendChild(input);
+            };
+        });
+        </script>
+        
     <script>
         // Detect device type
         function detectDeviceAndRedirect() {

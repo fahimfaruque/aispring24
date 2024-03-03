@@ -20,6 +20,8 @@ def index():
 @app.route('/search', methods=['POST'])
 def search():
     search_query = request.form['name'].lower().strip()
+    device_type = request.form.get('device', 'desktop')  # Default to desktop
+
     results = [row for row in dataset if search_query in row.get('Student_Name', '').lower() or search_query in row.get('Candidate_Name', '').lower()]
     filtered_results = [{
         'Student_Name': row['Student_Name'],
@@ -33,7 +35,7 @@ def search():
     } for row in results]
 
     unique_scores = sorted({int(row['Score']) for row in filtered_results})
-    
-    return render_template('results5.html', results=filtered_results, unique_scores=unique_scores)
+    template = 'results2.html' if device_type == 'desktop' else 'results5.html'
+    return render_template(template, results=filtered_results, unique_scores=unique_scores)
 if __name__ == '__main__':
     app.run(debug=True)
