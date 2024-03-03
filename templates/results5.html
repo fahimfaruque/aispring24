@@ -12,11 +12,6 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            height: 100%; /* Ensure they take up full height of the viewport */
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-            overflow-x: hidden; /* Hide horizontal overflow */
-            overflow-y: auto; /* Allow vertical scrolling */
         }
         h2 {
             text-align: center;
@@ -25,7 +20,7 @@
         }
         .back-to-search,
         .filter-button {
-            display: inline-block;
+            display: block;
             margin: 0.5em auto;
             padding: 0.8em 1.2em;
             border-radius: 20px;
@@ -87,20 +82,6 @@
         .swiper-button-prev, .swiper-button-next, .swiper-pagination {
             display: none;
         }
-            .button-link {
-        display: inline-block; /* Display as inline-block for proper sizing */
-        margin: 5px; /* Space between buttons */
-        padding: 10px 15px; /* Padding inside the buttons */
-        background-color: #007bff; /* Button color */
-        color: white; /* Text color */
-        text-decoration: none; /* Remove underline from links */
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s; /* Smooth transition for hover effect */
-        }
-
-        .button-link:hover {
-            background-color: #0056b3; /* Darker shade on hover */
-        }
     </style>
 </head>
 <body>
@@ -115,48 +96,12 @@
             <div class="swiper-slide" data-score="{{ result.Score }}">
                 <div class="slide-content">
                     <!-- Content goes here -->
-                    <div class="slide-content">
-                    <center>
-                        <a href="mailto:{{ result.Student_Email }}" class="button-link">{{ result.Student_Email }}</a>
-                        {% if result.Student_LinkedIn %}
-                            <a href="{{ result.Student_LinkedIn }}" class="button-link" target="_blank">LinkedIn</a>
-                        {% endif %}
-                    </center>
                 </div>
-                <div class="slide-content">
-                    <center>
-                        <a href="mailto:{{ result.Candidate_Email }}" class="button-link">{{ result.Candidate_Email }}</a>
-                        {% if result.Candidate_LinkedIn %}
-                            <a href="{{ result.Candidate_LinkedIn }}" class="button-link" target="_blank">LinkedIn</a>
-                        {% endif %}
-                    </center>
-                </div>
-                <div class="slide-content"><span class="rationale"><strong>{{ result.Student_Name }}</strong> and <strong>{{ result.Candidate_Name }}</strong> <br>{{ result.Rationale }}</span></div>
-                <div class="total-matches">
-                    Showing <strong>{{ filter_type|capitalize }}</strong> Matches: {{ total_matches }}
-                    <div>
-                        <!-- Inside results-active.html -->
-                
-                        <!-- Check the current filter type and adjust the button text accordingly -->
-                        {% if filter_type == 'highest' %}
-                            <!-- If currently showing highest, offer option to show all -->
-                            <a href="?filter_type=all&name={{ search_query }}" class="button-link">Show All Records</a>
-                        {% else %}
-                            <!-- If showing all, offer option to go back to highest -->
-                            <a href="?filter_type=highest&name={{ search_query }}" class="button-link">Show Highest Record</a>
-                        {% endif %}
-                
-                    </div>
-                
-                </div>    
-            </div>
             </div>
             {% endfor %}
         </div>
     </div>
-    
 
-    
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper;
