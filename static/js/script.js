@@ -21,11 +21,5 @@ document.addEventListener('DOMContentLoaded', function() {
         swiper.update(); // Update Swiper after changes
     }
 
-    // Attach event listeners to filter buttons
-    document.querySelectorAll('.filter-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const score = this.getAttribute('data-score');
-            filterSlides(score);
-        });
-    });
+
 });
