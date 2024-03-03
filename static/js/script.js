@@ -1,25 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Swiper
     var swiper = new Swiper('.swiper-container', {
-        loop: false,
-        autoHeight: true,
-        observer: true,
-        observeParents: true,
+        // existing configuration
     });
 
-    // Function to filter slides
+    // Attach event listener to score filter
+    document.getElementById('scoreFilter').addEventListener('change', function() {
+        var selectedScore = this.value;
+        filterSlides(selectedScore);
+    });
+
+    // Modify filterSlides to work with 'all' option
     function filterSlides(score) {
-        swiper.slides.forEach(function(slide, index) {
-            const slideScore = slide.dataset.score;
+        swiper.slides.forEach(function(slide) {
+            const slideScore = slide.dataset.score; // Ensure your slides have a data-score attribute
             if (score === 'all' || slideScore === score) {
-                swiper.slideTo(index);
-                swiper.slides[index].style.display = '';
+                slide.style.display = '';
             } else {
-                swiper.slides[index].style.display = 'none';
+                slide.style.display = 'none';
             }
         });
-        swiper.update(); // Update Swiper after changes
+        swiper.update(); // Important to call this to reinitialize the swiper layout
     }
-
-
 });

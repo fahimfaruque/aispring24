@@ -20,7 +20,7 @@
         }
         .back-to-search,
         .filter-button {
-            display: block;
+            display: inline-block;
             margin: 0.5em auto;
             padding: 0.8em 1.2em;
             border-radius: 20px;
@@ -50,10 +50,16 @@
         .swiper-button-next {
             color: #007BFF;
         }
-        .swiper-container {
+        /* .swiper-container {
             width: 100vw;
             overflow: hidden;
+        } */
+
+        swiper-container {
+        position: relative; /* Ensure the swiper container is positioned relatively */
         }
+
+
         .swiper-slide {
             width: 90vw;
             flex: none;
@@ -82,53 +88,88 @@
                 margin: 5px;
             }
         }
+        .button-link {
+    display: inline-block; /* Display as inline-block for proper sizing */
+    margin: 5px; /* Space between buttons */
+    padding: 10px 15px; /* Padding inside the buttons */
+    background-color: #007bff; /* Button color */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline from links */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .button-link:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+    .swiper-button-next, .swiper-button-prev {
+        position: absolute;
+        top: auto;
+        bottom: 10px; /* Adjust as needed for bottom spacing */
+        transform: translateX(-50%); /* Center align adjustment */
+        z-index: 10;
+    }
+
+    .swiper-button-next {
+        right:25%; /* Position right of center */
+        margin-right: -25px; /* Half the total width of both buttons to pull it exactly center */
+    }
+
+    .swiper-button-prev {
+        left: 25%; /* Position left of center */
+        margin-left: -25px; /* Half the total width of both buttons to push it exactly center */
+    }
+
     </style>
 </head>
 <body>
     <h2>Search Results</h2>
-    <center><a href="https://aispring24-c22081b210a9.herokuapp.com/" class="back-to-search">Back to Search</a></center>
-   
-    
-   
-    <div class="filter-buttons">
+    <center><a href="/" class="back-to-search">Back to Search</a></center>
+    <!-- <select id="scoreFilter">
+        <option value="all">All Scores</option>
         {% for score in unique_scores %}
-        <button class="filter-button" onclick="filterByScore('{{ score }}')">{{ score }}</button>
+        <option value="{{ score }}">{{ score }}</option>
         {% endfor %}
-        <button class="filter-button" onclick="filterByScore('all')">Reset</button>
-    </div>
+    </select> -->
+    
     <div class="swiper-container">
         <div class="swiper-wrapper">
             {% for result in results %}
-            <div class="swiper-slide" data-score="{{ result.Score }}">
-                <div class="slide-content"><center>{{ result.Student_Name }}</center></div>
-                <div class="slide-content"><center><a href="mailto:{{ result.Student_Email }}" class="link">{{ result.Student_Email }}</a>  <br>
-                    <a href="{{ result.Student_LinkedIn }}" class="link" target="_blank">{{ result.Student_LinkedIn }}</a></center></div>
-                <div class="slide-content"><center>{{ result.Candidate_Name }}</center></div>
-                <div class="slide-content"><center><a href="mailto:{{ result.Candidate_Email }}" class="link">{{ result.Candidate_Email }}</a><br>
-                    <a href="{{ result.Candidate_LinkedIn }}" class="link" target="_blank">{{ result.Candidate_LinkedIn }}</center></a></div>
+            <div class="swiper-slide" data-score="{{ result.score }}">
+                <div class="slide-content">
+                    <center>
+                        <a href="mailto:{{ result.Student_Email }}" class="button-link">{{ result.Student_Email }}</a>
+                        {% if result.Student_LinkedIn %}
+                            <a href="{{ result.Student_LinkedIn }}" class="button-link" target="_blank">LinkedIn</a>
+                        {% endif %}
+                    </center>
+                </div>
+                <div class="slide-content">
+                    <center>
+                        <a href="mailto:{{ result.Candidate_Email }}" class="button-link">{{ result.Candidate_Email }}</a>
+                        {% if result.Candidate_LinkedIn %}
+                            <a href="{{ result.Candidate_LinkedIn }}" class="button-link" target="_blank">LinkedIn</a>
+                        {% endif %}
+                    </center>
+                </div>
                 <div class="slide-content"><span class="rationale">{{ result.Rationale }}</span></div>
             </div>
             {% endfor %}
         </div>
+
     </div>
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        var swiper;
         document.addEventListener('DOMContentLoaded', function() {
-            swiper = new Swiper('.swiper-container', {
+            var swiper = new Swiper('.swiper-container', {
                 loop: false,
                 autoHeight: true,
+                observer: true,
+                observeParents: true,
             });
-            window.filterByScore = function(score) {
-                var slides = document.querySelectorAll('.swiper-slide');
-                slides.forEach(function(slide) {
-                    var slideScore = slide.getAttribute('data-score');
-                    slide.style.display = (score === 'all' || slideScore === score) ? '' : 'none';
-                });
-                swiper.update();
-                swiper.slideTo(0);
-            };
         });
     </script>
+
 </body>
 </html>
