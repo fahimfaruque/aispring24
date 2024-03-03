@@ -1,0 +1,105 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #005A9C;
+}
+
+.filter-buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.filter-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
+
+.swiper-container {
+    padding: 20px 0;
+}
+
+.swiper-slide {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Adjusted for better content distribution */
+    align-items: flex-start; /* Align content to the start of the slide */
+    text-align: left; /* Align text to the left */
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.swiper-slide:hover {
+    transform: translateY(-5px);
+}
+
+.slide-content {
+    margin-bottom: 15px; /* Adjusted margin for better content layout */
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none;
+    margin: 5px 0;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: #007BFF;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #007BFF;
+}
+
+.back-to-search {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.rationale {
+    white-space: pre-wrap;
+    margin-top: 15px; /* Added margin top for spacing */
+    overflow-wrap: break-word;
+}
